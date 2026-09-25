@@ -11,5 +11,5 @@ Security - Keycloak (Oauth2)
 **Installation:**  
 Root directory contains docker-compose.yml (Docker required)
 
-Run:  
+**Run:**  
 `docker compose up -d`
