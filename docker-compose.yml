@@ -1,0 +1,109 @@
+services:
+  findb:
+    image: postgres:18.4
+    container_name: findb
+    restart: always
+    environment:
+      POSTGRES_DB: findb
+      POSTGRES_USER: rob
+      POSTGRES_PASSWORD: findb
+    volumes:
+      - findb_data:/var/lib/postgresql
+    ports:
+      - "5432:5432"
+    networks:
+      - finapp_network
+
+  keycloak_db:
+    image: postgres:18.4
+    container_name: keycloak_db
+    restart: always
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: rob
+      POSTGRES_PASSWORD: keycloak
+    volumes:
+      - keycloak_data:/var/lib/postgresql
+    ports:
+      - "5433:5432"
+    networks:
+      - finapp_network
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.7
+    container_name: keycloak
+    restart: always
+    command: start-dev
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://keycloak_db:5432/keycloak
+      KC_DB_USERNAME: rob
+      KC_DB_PASSWORD: keycloak
+      KC_HTTP_ENABLED: "true"
+      KC_HOSTNAME: localhost
+      # --- REQUIRED: Enable observability layers explicitly ---
+      KC_HEALTH_ENABLED: "true"
+      KC_METRICS_ENABLED: "true"
+    ports:
+      - "9090:8080"
+    volumes:
+      - ./kc_theme:/opt/keycloak/providers/
+    depends_on:
+      - keycloak_db
+    # --- UPDATED: Targets port 9000 using standard Keycloak TCP routing commands ---
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "exec 3<>/dev/tcp/localhost/9000; printf 'HEAD /health/live HTTP/1.0\r\n\r\n' >&3; grep 'HTTP/1.0 200' <&3",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - finapp_network
+
+  api:
+    build:
+      context: ./api
+    container_name: finapp_api
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://findb:5432/findb
+      - SPRING_DATASOURCE_USERNAME=rob
+      - SPRING_DATASOURCE_PASSWORD=findb
+      - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=http://keycloak:8080/realms/finapp-realm
+    depends_on:
+      findb:
+        condition: service_started
+      keycloak:
+        condition: service_healthy
+    networks:
+      - finapp_network
+
+  client:
+    build:
+      context: ./client
+      args:
+        - VITE_API_URL=http://localhost:8080
+        - VITE_KEYCLOAK_URL=http://localhost:9090
+    container_name: finapp_client
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    networks:
+      - finapp_network
+
+volumes:
+  findb_data:
+  keycloak_data:
+
+networks:
+  finapp_network:
+    driver: bridge

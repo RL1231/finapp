@@ -1,0 +1,48 @@
+@import 'tailwindcss';
+
+@theme {
+  --breakpoint-xs-landscape: screen and (min-width: 40rem) and (orientation: landscape);
+  --breakpoint-sm: 42.5rem;
+}
+
+:root {
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  background-color: var(--color-indigo-950);
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+}
+
+p {
+  margin: 0;
+}
+
+code {
+  font-family: var(--mono);
+}
+
+.category {
+  text-anchor: end;
+}
+
+.value {
+  margin-left: 50px;
+}
+
+text {
+  font-size: 10pt;
+  alignment-baseline: central;
+}
