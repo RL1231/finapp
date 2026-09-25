@@ -3,11 +3,11 @@
 ## A full-stack financial mobile application demo using Typescript and Java:
 
 **Project Stack:**
-Frontend - Vite + React + TS
-Backend - Spring Boot + Java + Maven
+Frontend - Vite + React + TS\n
+Backend - Spring Boot + Java + Maven\n
 
 **Installation:**
 Root directory contains docker-compose.yml (Docker required)
 
-Run:
+Run:\n
 `docker compose up -d`
