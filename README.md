@@ -1,6 +1,6 @@
 # Finapp - Financial App project (In Progress)
 
-A full-stack financial mobile application demo using Typescript and Java:
+## A full-stack financial mobile application demo using Typescript and Java:
 
 **Project Stack:**
 Frontend - Vite + React + TS
