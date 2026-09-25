@@ -1,4 +1,4 @@
-#Finapp - Financial App project (In Progress)
+# Finapp - Financial App project (In Progress)
 
 A full-stack financial mobile application demo using Typescript and Java:
 
