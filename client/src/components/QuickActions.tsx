@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router';
 
 export default function QuickActions() {
@@ -8,39 +8,80 @@ export default function QuickActions() {
     h: window.innerHeight,
   });
 
-  const [gridStyle, setGridStyle] = useState('');
-  const [linkStyle, setLinkStyle] = useState('');
-  const [btnStyle, setBtnStyle] = useState('');
-  const [chartStyle, setChartStyle] = useState('');
-
-  const isPage = useCallback(() => {
-    switch (currentPath) {
-      case '/activities/daily':
-      case '/activities/weekly':
-      case '/activities/monthly':
-      case '/activities/ytd':
-        return false;
-      default:
-        return true;
-    }
-  }, [currentPath]);
+  const [gridStyle, setGridStyle] = useState('grid grid-cols-4 place-items-center gap-x-1');
+  const [btnStyle, setBtnStyle] = useState(
+    'flex flex-col justify-center items-center border border-[#c3b1e1] rounded-2xl min-w-[70px] min-h-[70px]',
+  );
+  const [svgStyle, setSvgStyle] = useState('38px');
+  const [textStyle, setTextStyle] = useState('text-[#c3b1e1]');
 
   useEffect(() => {
     function updateViewport() {
       setViewport({ w: window.innerWidth, h: window.innerHeight });
 
-      if (viewport.w >= 640 && viewport.h >= 480 && isPage()) {
-        setGridStyle(
-          'grid grid-cols-2 sm:landscape:grid-cols-4 place-items-center sm:gap-y-6 sm:landscape:gap-y-0 md:gap-y-14 sm:px-7 sm:landscape:px-3 md:px-10',
+      if (viewport.w < 480) {
+        setGridStyle('grid grid-cols-4 place-items-center gap-x-1');
+        setBtnStyle(
+          'flex flex-col justify-center items-center border border-[#c3b1e1] rounded-2xl min-w-[70px] min-h-[70px]',
         );
-        setLinkStyle('flex');
-        setBtnStyle('hidden');
-        setChartStyle('flex');
-      } else {
-        setGridStyle('grid grid-cols-4 place-items-center');
-        setLinkStyle('');
-        setBtnStyle('min-w-[70px] min-h-[70px] rounded-2xl bg-gray-500 border border-gray-30');
-        setChartStyle('hidden');
+        setSvgStyle('38px');
+        setTextStyle('text-[#c3b1e1] text-xs');
+      }
+      if (viewport.w >= 480 && viewport.w < 640) {
+        setGridStyle('grid grid-cols-4 place-items-center gap-x-1');
+        setBtnStyle(
+          'flex flex-col justify-center items-center border border-[#c3b1e1] rounded-2xl min-w-[70px] min-h-[70px]',
+        );
+        setSvgStyle('38px');
+        setTextStyle('text-[#c3b1e1] text-xs');
+      }
+      if (viewport.w >= 640 && viewport.h < 480) {
+        setGridStyle('grid grid-cols-4 place-items-center gap-x-1 px-6');
+        setBtnStyle(
+          'flex flex-col justify-center items-center border border-[#c3b1e1] rounded-2xl min-w-[70px] min-h-[70px]',
+        );
+        setSvgStyle('38px');
+        setTextStyle('text-[#c3b1e1] text-xs');
+      }
+      if (viewport.w >= 640 && viewport.w < 768 && viewport.h >= 480) {
+        setGridStyle('grid grid-cols-2 place-items-center gap-x-1 gap-y-10 px-10');
+        setBtnStyle(
+          'flex flex-col justify-center items-center border border-[#c3b1e1] rounded-2xl min-w-[175px] min-h-[175px]',
+        );
+        setSvgStyle('90px');
+        setTextStyle('text-[#c3b1e1] text-lg');
+      }
+      if (viewport.w >= 768 && viewport.w < 1024 && viewport.h < 480) {
+        setGridStyle('grid grid-cols-4 place-items-center gap-x-1');
+        setBtnStyle(
+          'flex flex-col justify-center items-center border border-[#c3b1e1] rounded-2xl min-w-[120px] min-h-[120px]',
+        );
+        setSvgStyle('42px');
+        setTextStyle('text-[#c3b1e1] text-lg');
+      }
+      if (viewport.w >= 768 && viewport.w < 1024 && viewport.h >= 480) {
+        setGridStyle('grid grid-cols-2 place-items-center gap-x-1 gap-y-15 px-10');
+        setBtnStyle(
+          'flex flex-col justify-center items-center border border-[#c3b1e1] rounded-2xl min-w-[200px] min-h-[200px]',
+        );
+        setSvgStyle('90px');
+        setTextStyle('text-[#c3b1e1] text-xl');
+      }
+      if (viewport.w >= 1024 && viewport.w < 1280 && viewport.h < 1080) {
+        setGridStyle('grid grid-cols-4 place-items-center px-10');
+        setBtnStyle(
+          'flex flex-col justify-center items-center border border-[#c3b1e1] rounded-2xl min-w-[175px] min-h-[175px]',
+        );
+        setSvgStyle('90px');
+        setTextStyle('text-[#c3b1e1] text-lg');
+      }
+      if (viewport.w >= 1280) {
+        setGridStyle('grid grid-cols-4 place-items-center px-10');
+        setBtnStyle(
+          'flex flex-col justify-center items-center border border-[#c3b1e1] rounded-2xl min-w-[200px] min-h-[200px]',
+        );
+        setSvgStyle('120px');
+        setTextStyle('text-[#c3b1e1] text-xl');
       }
     }
 
@@ -48,16 +89,12 @@ export default function QuickActions() {
 
     addEventListener('resize', updateViewport);
     return () => removeEventListener('resize', updateViewport);
-  }, [viewport.w, viewport.h, isPage]);
+  }, [viewport.w, viewport.h]);
 
-  // Link styles
-  const linkElement = {
-    link: linkStyle,
-    btn: {
-      style: btnStyle,
-      title: 'mx-auto text-xs italic',
-    },
-    chart: chartStyle,
+  const style = {
+    btn: btnStyle,
+    svg: svgStyle,
+    txt: textStyle,
   };
 
   return (
@@ -68,33 +105,12 @@ export default function QuickActions() {
         ) : null}
       </div>
       <div className={gridStyle}>
-        <Link to="/activities/daily" className={linkElement.link}>
-          <button className={linkElement.btn.style}>
+        <Link to="/activities/daily">
+          <button className={style.btn}>
+            <span className={style.txt}>Daily</span>
             <svg
-              width="32px"
-              height="32px"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="mx-auto"
-            >
-              <path
-                d="M3 9H21M7 3V5M17 3V5M6 12H10V16H6V12ZM6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z"
-                stroke="#FFFFFF"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className={linkElement.btn.title}>Daily</span>
-          </button>
-          <button
-            className={`${chartStyle} flex-col justify-center border border-[#c3b1e1] rounded-2xl px-6 py-2`}
-          >
-            <span className="text-[#c3b1e1] sm:text-xl">Daily</span>
-            <svg
-              width="125px"
-              height="125px"
+              width={style.svg}
+              height={style.svg}
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -109,33 +125,12 @@ export default function QuickActions() {
             </svg>
           </button>
         </Link>
-        <Link to="/activities/weekly" className={linkElement.link}>
-          <button className={linkElement.btn.style}>
+        <Link to="/activities/weekly">
+          <button className={style.btn}>
+            <span className={style.txt}>Week</span>
             <svg
-              width="28px"
-              height="28px"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="mx-auto"
-            >
-              <path
-                d="M3 9H21M17 13.0014L7 13M10.3333 17.0005L7 17M7 3V5M17 3V5M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z"
-                stroke="#FFFFFF"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className={linkElement.btn.title}>Week</span>
-          </button>
-          <button
-            className={`${chartStyle} flex-col justify-center border border-[#c3b1e1] rounded-2xl px-6 py-2`}
-          >
-            <span className="text-[#c3b1e1] sm:text-xl">Week</span>
-            <svg
-              width="125px"
-              height="125px"
+              width={style.svg}
+              height={style.svg}
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -164,32 +159,12 @@ export default function QuickActions() {
             </svg>
           </button>
         </Link>
-        <Link to="/activities/monthly" className={linkElement.link}>
-          <button className={linkElement.btn.style}>
+        <Link to="/activities/monthly">
+          <button className={style.btn}>
+            <span className={style.txt}>Month</span>
             <svg
-              width="28px"
-              height="28px"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="mx-auto"
-            >
-              <path
-                d="M3 9H21M7 3V5M17 3V5M6 12H8M11 12H13M16 12H18M6 15H8M11 15H13M16 15H18M6 18H8M11 18H13M16 18H18M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z"
-                stroke="#FFFFFF"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
-            <span className={linkElement.btn.title}>Month</span>
-          </button>
-          <button
-            className={`${chartStyle} flex-col justify-center border border-[#c3b1e1] rounded-2xl px-6 py-2`}
-          >
-            <span className="text-[#c3b1e1] sm:text-xl">Month</span>
-            <svg
-              width="125px"
-              height="125px"
+              width={style.svg}
+              height={style.svg}
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -204,33 +179,12 @@ export default function QuickActions() {
             </svg>
           </button>
         </Link>
-        <Link to="/activities/ytd" className={linkElement.link}>
-          <button className={linkElement.btn.style}>
+        <Link to="/activities/ytd">
+          <button className={style.btn}>
+            <span className={style.txt}>YTD</span>
             <svg
-              width="28px"
-              height="28px"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="mx-auto"
-            >
-              <path
-                d="M3 9H21M7 3V5M17 3V5M6 13H8M6 17H8M11 13H13M11 17H13M16 13H18M16 17H18M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z"
-                stroke="#FFFFFF"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className={linkElement.btn.title}>YTD</span>
-          </button>
-          <button
-            className={`${chartStyle} flex-col justify-center border border-[#c3b1e1] rounded-2xl px-6 py-2`}
-          >
-            <span className="text-[#c3b1e1] sm:text-xl">YTD</span>
-            <svg
-              width="125px"
-              height="125px"
+              width={style.svg}
+              height={style.svg}
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
