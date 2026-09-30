@@ -33,7 +33,7 @@ export default function ProfilePage() {
   }, [viewport.w, viewport.h]);
 
   return (
-    <div className="w-full mt-18 landscape:mb-30">
+    <div className="w-full">
       <Link to="/" className="flex mb-2 text-xl sm:text-2xl text-white font-semibold">
         <span>&#60; Profile</span>
       </Link>

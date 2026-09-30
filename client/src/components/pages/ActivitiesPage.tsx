@@ -34,7 +34,7 @@ export default function Activities() {
   }
 
   return (
-    <div className="mt-18 mb-40 landscape:mb-30 text-white font-semibold">
+    <div className="text-white font-semibold">
       <div className="mb-2">
         {pathData && (
           <Link to={pathData.pathName} className="text-xl sm:text-2xl font-semibold">

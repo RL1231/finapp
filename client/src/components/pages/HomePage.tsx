@@ -32,7 +32,7 @@ export default function HomePage() {
 
   if (!isLoading && userData)
     return (
-      <div className="mt-18 landscape:mb-30 md:landscape:mt-5">
+      <div>
         <div key={userData.id} className="text-white font-semibold">
           {userData.account ? (
             <div>

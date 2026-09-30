@@ -15,21 +15,6 @@ function SecuredContent({ children }: { children: React.ReactNode }) {
     };
   }, [viewport]);
 
-  function handleContentSize() {
-    // xs breakpoint
-    if (viewport.w < 480 && viewport.h > 660) return 'mx-8';
-    // xs breakpoint:landscape - iphone se
-    if (viewport.w > 620 && viewport.h < 420) return 'mx-30';
-    // xs breakpoint:landscape - iphone 17
-    if (viewport.w > 820 && viewport.h < 420) return 'mx-30';
-    // sm breakpoint - ipad mini
-    if (viewport.w > 720 && viewport.h > 1080) return 'mx-30';
-    // sm breakpoint:landscape - ipad mini
-    if (viewport.w > 1080 && viewport.h > 720 && viewport.h < 1200) return 'mx-40';
-
-    return '';
-  }
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -39,7 +24,9 @@ function SecuredContent({ children }: { children: React.ReactNode }) {
       <div className="w-full mx-auto">
         {isAuthenticated ? (
           <>
-            <div className={`${handleContentSize()}`}>{children}</div>
+            <div className="mx-8 landscape:mx-30 sm:mx-30 lg:mx-40 mt-18 md:landscape:mt-5 lg:mt-12 landscape:mb-30">
+              {children}
+            </div>
           </>
         ) : (
           <div className="px-16 py-48">

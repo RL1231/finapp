@@ -17,7 +17,7 @@ export default function Ytd() {
 
   return (
     <>
-      <div className="h-50">
+      <div className="min-h-50 sm:min-h-75 md:min-h-100 lg:min-h-70">
         <LineChart chartData={chartData} />
       </div>
       <QuickActions />

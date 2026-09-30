@@ -17,7 +17,7 @@ export default function WalletPage() {
   const dailyResults = currentDailyBalance(userData, reports);
 
   return (
-    <div className="mt-18 landscape:mb-30 lg:landscape:mt-12 text-white">
+    <div className="text-white">
       <div className="flex flex-2 items-center mb-4 text-xl sm:text-2xl font-semibold">
         <Link to="/">&#60; Wallet</Link>
       </div>
