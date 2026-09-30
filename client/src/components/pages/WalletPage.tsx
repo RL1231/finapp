@@ -17,7 +17,7 @@ export default function WalletPage() {
   const dailyResults = currentDailyBalance(userData, reports);
 
   return (
-    <div className="text-white">
+    <div>
       <div className="flex flex-2 items-center mb-4 text-xl sm:text-2xl font-semibold">
         <Link to="/">&#60; Wallet</Link>
       </div>
@@ -30,7 +30,7 @@ export default function WalletPage() {
         </span>
       </div>
       <div className={`flex flex-col mb-4 sm:mb-6`}>
-        <span className="mb-4 text-xl sm:text-2xl text-white font-semibold">Current Activity</span>
+        <span className="mb-4 text-xl sm:text-2xl font-semibold">Current Activity</span>
         <div className={`${summaryStyle}`}>
           <div className="flex flex-2">
             <span className="text-base">Growth</span>
@@ -43,7 +43,7 @@ export default function WalletPage() {
           <div className="flex flex-2">
             <span>Income</span>
             <span
-              className={`ml-auto ${reports?.daily && reports.daily.income > 0 ? 'text-[#90fda9]' : 'text-white'}`}
+              className={`ml-auto ${reports?.daily && reports.daily.income > 0 ? 'text-[#90fda9]' : ''}`}
             >
               {reports?.daily ? formatUSD(reports.daily.income) : 'No Data'}
             </span>
@@ -57,7 +57,7 @@ export default function WalletPage() {
         </div>
       </div>
       <div className="mb-4 sm:mb-6">
-        <span className="text-xl sm:text-2xl text-white font-semibold">Financial Reports</span>
+        <span className="text-xl sm:text-2xl font-semibold">Financial Reports</span>
         <QuickActions />
       </div>
       <MobileNav />

@@ -34,12 +34,12 @@ export default function ProfilePage() {
 
   return (
     <div className="w-full">
-      <Link to="/" className="flex mb-2 text-xl sm:text-2xl text-white font-semibold">
+      <Link to="/" className="flex mb-2 text-xl sm:text-2xl font-semibold">
         <span>&#60; Profile</span>
       </Link>
       <div className="flex flex-col justify-center items-center sm:mt-20 lg:mt-0">
         <img src="user.png" width={img} className="mb-2 sm:mb-4" />
-        <span className="text-lg sm:text-2xl text-white font-semibold">{`${firstName} ${lastName}`}</span>
+        <span className="text-lg sm:text-2xl font-semibold">{`${firstName} ${lastName}`}</span>
         <div className="flex flex-2 gap-2 justify-center items-center mb-2 sm:mb-4">
           <svg
             xmlns="http://www.w4.org/2000/svg"
@@ -58,24 +58,24 @@ export default function ProfilePage() {
               </g>
             </g>
           </svg>
-          <span className="mb-1 text-sm sm:text-base text-white font-semibold italic">{email}</span>
+          <span className="mb-1 text-sm sm:text-base font-semibold italic">{email}</span>
         </div>
         <div className="flex flex-col w-full mb-4 sm:mb-6 px-4 py-2 sm:px-6 sm:py-4 lg:px-10 rounded-xl bg-gray-500 border border-gray-300">
           <span className="mb-2 text-xs sm:text-base text-gray-300 italic">
             Personal Information
           </span>
-          <div className="flex w-full mb-3 text-sm sm:text-lg text-white font-semibold">
+          <div className="flex w-full mb-3 text-sm sm:text-lg font-semibold">
             <span>Email Address</span>
             <span className="ml-auto">&gt;</span>
           </div>
-          <div className="flex w-full mb-3 text-sm sm:text-lg text-white font-semibold">
+          <div className="flex w-full mb-3 text-sm sm:text-lg font-semibold">
             <span>Name</span>
             <span className="ml-auto">&gt;</span>
           </div>
         </div>
         <div className="flex flex-col w-full mb-8 px-4 py-2 sm:px-6 sm:py-4 lg:px-10 rounded-xl bg-gray-500 border border-gray-300">
           <span className="mb-2 text-xs sm:text-base text-gray-300 italic">Security</span>
-          <div className="flex w-full mb-3 text-sm sm:text-lg text-white font-semibold">
+          <div className="flex w-full mb-3 text-sm sm:text-lg font-semibold">
             <span>Change Password</span>
             <span className="ml-auto">&gt;</span>
           </div>

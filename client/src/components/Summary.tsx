@@ -41,7 +41,7 @@ export default function Summary({ dailyData, weekData, monthData, yearData }: Su
 
     return (
       <div className="flex flex-col mb-3">
-        <span className="mb-2 text-sm text-white font-semibold">Daily Report</span>
+        <span className="mb-2 text-sm font-semibold">Daily Report</span>
         <div className={summaryStyle}>
           <div className="flex flex-2">
             <span>Balance</span>
@@ -67,7 +67,7 @@ export default function Summary({ dailyData, weekData, monthData, yearData }: Su
 
     return (
       <div className="flex flex-col my-3">
-        <span className="mb-2 text-sm text-white font-semibold">Weekly Average</span>
+        <span className="mb-2 text-sm font-semibold">Weekly Average</span>
         <div className={summaryStyle}>
           <div className="flex flex-2">
             <span>Balance</span>
@@ -95,7 +95,7 @@ export default function Summary({ dailyData, weekData, monthData, yearData }: Su
 
     return (
       <div className="flex flex-col my-3">
-        <span className="mb-2 text-sm text-white font-semibold">Monthly Average</span>
+        <span className="mb-2 text-sm font-semibold">Monthly Average</span>
         <div className={summaryStyle}>
           <div className="flex flex-2">
             <span>Balance</span>

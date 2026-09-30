@@ -11,6 +11,7 @@
   --mono: ui-monospace, Consolas, monospace;
 
   background-color: var(--color-indigo-950);
+  color: var(--color-white);
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

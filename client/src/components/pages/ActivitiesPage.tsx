@@ -34,7 +34,7 @@ export default function Activities() {
   }
 
   return (
-    <div className="text-white font-semibold">
+    <div className="font-semibold">
       <div className="mb-2">
         {pathData && (
           <Link to={pathData.pathName} className="text-xl sm:text-2xl font-semibold">
@@ -49,7 +49,7 @@ export default function Activities() {
       ) : null}
       {currentPath === '/activities' ? (
         <div className="flex flex-col gap-y-4">
-          <span className="text-lg sm:text-2xl text-white font-semibold">Recent Activity</span>
+          <span className="text-lg sm:text-2xl font-semibold">Recent Activity</span>
           {activities.slice(0, 5).map((report) => (
             <Activity key={report.id} report={report} />
           ))}

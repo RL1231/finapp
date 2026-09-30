@@ -50,7 +50,7 @@ export default function MobileNav() {
                 </g>
               </g>
             </svg>
-            <span className="mx-auto text-xs md:text-sm text-white">Home</span>
+            <span className="mx-auto text-xs md:text-sm">Home</span>
           </button>
           <button
             className={`flex flex-col justify-center items-center ${paddingSize}`}
@@ -103,7 +103,7 @@ export default function MobileNav() {
                 </g>
               </g>
             </svg>
-            <span className="mx-auto text-xs md:text-sm text-white">Activities</span>
+            <span className="mx-auto text-xs md:text-sm">Activities</span>
           </button>
           <button
             className={`flex flex-col justify-center items-center ${paddingSize}`}
@@ -128,7 +128,7 @@ export default function MobileNav() {
                 </g>
               </g>
             </svg>
-            <span className="mx-auto text-xs md:text-sm text-white">Profile</span>
+            <span className="mx-auto text-xs md:text-sm">Profile</span>
           </button>
         </div>
       </div>

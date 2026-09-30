@@ -33,7 +33,7 @@ export default function HomePage() {
   if (!isLoading && userData)
     return (
       <div>
-        <div key={userData.id} className="text-white font-semibold">
+        <div key={userData.id} className="font-semibold">
           {userData.account ? (
             <div>
               <div className="mb-4 md:mb-6 lg:mb-4">
@@ -74,7 +74,7 @@ export default function HomePage() {
               <MobileNav />
             </div>
           ) : (
-            <p className="md:text-2xl text-white font-semibold">Is loading...</p>
+            <p className="md:text-2xl font-semibold">Is loading...</p>
           )}
         </div>
       </div>

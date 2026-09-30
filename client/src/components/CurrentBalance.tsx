@@ -48,10 +48,10 @@ export default function CurrentBalance() {
             />
           </svg>
         )}
-        <div className="ml-1 text-xs sm:text-sm md:text-base text-white italic">
+        <div className="ml-1 text-xs sm:text-sm md:text-base italic">
           {dailyResults.percentage}%
         </div>
-        <div className="ml-1 text-xs sm:text-sm md:text-base text-white italic">Today</div>
+        <div className="ml-1 text-xs sm:text-sm md:text-base italic">Today</div>
         {currentPath === '/' && (
           <Link to="/wallet" className="ml-auto text-xs sm:text-sm md:text-base italic">
             View All &gt;
