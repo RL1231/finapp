@@ -1,7 +1,6 @@
 import { useAuth } from '../hooks/useAuth';
 import { getLastDayOfEachMonth } from '../utilities/getLastDayOfEachMonth';
 import LineChart from './charts/LineChart';
-import QuickActions from './QuickActions';
 import Summary from './Summary';
 
 export default function Ytd() {
@@ -16,12 +15,11 @@ export default function Ytd() {
   }));
 
   return (
-    <>
+    <div>
       <div className="min-h-50 sm:min-h-75 md:min-h-100 lg:min-h-70">
         <LineChart chartData={chartData} />
       </div>
-      <QuickActions />
       <Summary yearData={chartData} />
-    </>
+    </div>
   );
 }

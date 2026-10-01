@@ -1,6 +1,5 @@
 import { useAuth } from '../hooks/useAuth';
 import BarChart from './charts/BarChart';
-import QuickActions from './QuickActions';
 import Summary from './Summary';
 
 export default function Week() {
@@ -33,12 +32,11 @@ export default function Week() {
   const weekData = [...weekBalance, ...weekIncome, ...weekExp];
 
   return (
-    <>
+    <div>
       <div className="min-h-50 sm:min-h-75 md:min-h-100 lg:min-h-70">
         <BarChart chartData={weekData} />
       </div>
-      <QuickActions />
       <Summary weekData={weekData} />
-    </>
+    </div>
   );
 }

@@ -42,11 +42,8 @@ export default function Activities() {
           </Link>
         )}
       </div>
-      {currentPath === '/activities' ? (
-        <div>
-          <QuickActions />
-        </div>
-      ) : null}
+      <Outlet />
+      <QuickActions />
       {currentPath === '/activities' ? (
         <div className="flex flex-col gap-y-4">
           <span className="text-lg sm:text-2xl font-semibold">Recent Activity</span>
@@ -55,7 +52,6 @@ export default function Activities() {
           ))}
         </div>
       ) : null}
-      <Outlet />
       <MobileNav />
     </div>
   );

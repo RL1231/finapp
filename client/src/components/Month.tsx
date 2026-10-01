@@ -1,6 +1,5 @@
 import { useAuth } from '../hooks/useAuth';
 import MixChart from './charts/MixChart';
-import QuickActions from './QuickActions';
 import Summary from './Summary';
 
 export default function Month() {
@@ -27,12 +26,11 @@ export default function Month() {
   ];
 
   return (
-    <>
+    <div>
       <div className="min-h-50 sm:min-h-75 md:min-h-100 lg:min-h-70">
         <MixChart chartData={chartData} />
       </div>
-      <QuickActions />
       <Summary monthData={monthData} />
-    </>
+    </div>
   );
 }
