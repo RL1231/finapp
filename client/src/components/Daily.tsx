@@ -14,8 +14,8 @@ export default function Daily() {
     : [];
 
   return (
-    <div>
-      <div className="min-h-50 sm:min-h-75 md:min-h-100 lg:min-h-70">
+    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-x-4">
+      <div className="mb-4 sm:mb-8 h-50 sm:h-100 lg:h-70">
         <PieChart chartData={dailyData} />
       </div>
       <Summary dailyData={dailyData} />

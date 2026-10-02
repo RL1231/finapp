@@ -6,7 +6,8 @@ export default function MobileNav() {
   const [viewport, setViewport] = useState({ w: window.innerWidth, h: window.innerHeight });
 
   const iconSmall = viewport.w >= 720 && viewport.h >= 480 ? '42px' : '28px';
-  const iconSize = viewport.w >= 1024 ? '84px' : iconSmall;
+  const iconMed = viewport.w >= 1024 ? '84px' : iconSmall;
+  const iconSize = viewport.w >= 1280 ? '120px' : iconMed;
   const paddingSize = viewport.w >= 720 && viewport.h >= 480 ? 'mx-6 my-8' : 'm-6';
 
   useEffect(() => {

@@ -31,7 +31,11 @@ interface SummaryProps {
   yearData?: YearData[];
 }
 
-const summaryStyle = `flex flex-col gap-y-4 border-1 border-[#c3b1e1] rounded-xl p-4 text-white text-sm font-semibold`;
+const summary = {
+  container: 'flex flex-col mb-3 sm:mb-8',
+  title: 'mb-2 sm:mb-4 lg:mx-auto text-sm sm:text-2xl font-semibold',
+  card: `flex flex-col gap-y-4 lg:mt-8 border-1 border-[#c3b1e1] rounded-xl p-4 sm:px-6 text-sm sm:text-xl font-semibold`,
+};
 
 export default function Summary({ dailyData, weekData, monthData, yearData }: SummaryProps) {
   if (dailyData && dailyData?.length > 0) {
@@ -40,9 +44,9 @@ export default function Summary({ dailyData, weekData, monthData, yearData }: Su
     const exp = dailyData?.filter((d) => d.label === 'expenditure').find((d) => d.value)?.value;
 
     return (
-      <div className="flex flex-col mb-3">
-        <span className="mb-2 text-sm font-semibold">Daily Report</span>
-        <div className={summaryStyle}>
+      <div className={summary.container}>
+        <span className={summary.title}>Daily Report</span>
+        <div className={summary.card}>
           <div className="flex flex-2">
             <span>Balance</span>
             <span className="ml-auto">{formatUSD(balance || 0)}</span>
@@ -66,9 +70,9 @@ export default function Summary({ dailyData, weekData, monthData, yearData }: Su
     const expenditures = weekData.filter((d) => d.label === 'expenditures').map((d) => d.value);
 
     return (
-      <div className="flex flex-col my-3">
-        <span className="mb-2 text-sm font-semibold">Weekly Average</span>
-        <div className={summaryStyle}>
+      <div className={summary.container}>
+        <span className={summary.title}>Weekly Average</span>
+        <div className={summary.card}>
           <div className="flex flex-2">
             <span>Balance</span>
             <span className="ml-auto">{formatUSD(average(balances))}</span>
@@ -94,9 +98,9 @@ export default function Summary({ dailyData, weekData, monthData, yearData }: Su
       .flatMap((d) => d.values);
 
     return (
-      <div className="flex flex-col my-3">
-        <span className="mb-2 text-sm font-semibold">Monthly Average</span>
-        <div className={summaryStyle}>
+      <div className={summary.container}>
+        <span className={summary.title}>Monthly Average</span>
+        <div className={summary.card}>
           <div className="flex flex-2">
             <span>Balance</span>
             <span className="ml-auto">{formatUSD(average(balances))}</span>
@@ -120,9 +124,9 @@ export default function Summary({ dailyData, weekData, monthData, yearData }: Su
     const exp = yearData.map((d) => d.expenditures);
 
     return (
-      <div className="flex flex-col my-3">
-        <span className="mb-2 text-sm text-white font-semibold">YTD Average</span>
-        <div className={summaryStyle}>
+      <div className={summary.container}>
+        <span className={summary.title}>YTD Average</span>
+        <div className={summary.card}>
           <div className="flex flex-2">
             <span>Balance</span>
             <span className="ml-auto">{formatUSD(average(balances))}</span>
@@ -140,5 +144,5 @@ export default function Summary({ dailyData, weekData, monthData, yearData }: Su
     );
   }
 
-  return <div className={summaryStyle}>No Data</div>;
+  return <div className={summary.card}>No Data</div>;
 }

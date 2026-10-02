@@ -118,7 +118,7 @@ export default function QuickActions() {
         !isPage()
       ) {
         console.log('md - ipad pro', window.innerWidth, window.innerHeight);
-        setGridStyle('grid grid-cols-2 place-items-center gap-x-1 gap-y-15 px-10');
+        setGridStyle('grid grid-cols-2 place-items-center gap-x-1 gap-y-15 px-5');
         setBtnStyle(
           'flex flex-col justify-center items-center border border-[#c3b1e1] rounded-2xl min-w-[200px] min-h-[200px]',
         );
@@ -128,7 +128,7 @@ export default function QuickActions() {
 
       if (window.innerWidth >= 1024 && window.innerWidth < 1280 && isPage()) {
         console.log('lg - laptop', window.innerWidth, window.innerHeight);
-        setGridStyle('grid grid-cols-4 place-items-center gap-x-1');
+        setGridStyle('grid grid-cols-4 place-items-center gap-x-1 px-20');
         setBtnStyle(
           'flex flex-col justify-center items-center border border-[#c3b1e1] rounded-2xl min-w-[120px] min-h-[120px]',
         );

@@ -24,7 +24,7 @@ function SecuredContent({ children }: { children: React.ReactNode }) {
       <div className="w-full mx-auto">
         {isAuthenticated ? (
           <>
-            <div className="mx-8 landscape:mx-30 sm:mx-30 lg:mx-40 mt-18 md:landscape:mt-5 lg:mt-12 landscape:mb-30">
+            <div className="mx-8 landscape:mx-30 sm:mx-30 lg:mx-40 mt-18 md:landscape:mt-20 lg:landscape:mt-30 landscape:mb-30">
               {children}
             </div>
           </>
