@@ -1,7 +1,6 @@
 package com.finapp.api.service;
 
 import com.finapp.api.entity.*;
-import com.finapp.api.repo.AccountRepo;
 import com.finapp.api.repo.RoleRepo;
 import com.finapp.api.repo.UserRepo;
 import jakarta.transaction.Transactional;
@@ -19,12 +18,10 @@ import java.util.*;
 
 @Service
 public class CsvImportService {
-    private final AccountRepo accountRepo;
     private final RoleRepo roleRepo;
     private final UserRepo userRepo;
 
-    public CsvImportService(AccountRepo accountRepo, RoleRepo roleRepo, UserRepo userRepo) {
-        this.accountRepo = accountRepo;
+    public CsvImportService(RoleRepo roleRepo, UserRepo userRepo) {
         this.roleRepo = roleRepo;
         this.userRepo = userRepo;
     }

@@ -2,15 +2,10 @@ package com.finapp.api.controller;
 
 import com.finapp.api.dto.JwtUser;
 import com.finapp.api.entity.User;
-import com.finapp.api.repo.AccountRepo;
 import com.finapp.api.repo.UserRepo;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
-
-import javax.naming.AuthenticationException;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
